@@ -14,7 +14,7 @@ class SignUp extends Component {
       last_name: "",
       email: "",
       password: "",
-      designation: "",
+      designation: "normal",
       role: ""
     };
   }
@@ -26,10 +26,11 @@ class SignUp extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { first_name, last_name, email, password, role } = this.state;
+    const { first_name, last_name, email, password, designation } = this.state;
     this.props.dispatch(
-      signUp({ first_name, last_name, email, password, role })
+      signUp({ first_name, last_name, email, password, designation })
     );
+    this.props.history.replace("/")
   };
 
   render() {
@@ -69,13 +70,16 @@ class SignUp extends Component {
                 name="password"
                 placeholder="Password"
               />
-              <input
+              {/* 
+                <input
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.role}
-                name="role"
+                name="designation"
                 placeholder="Designation"
               />
+              */}
+
               <div className="signup-terms">
                 <button
                   onClick={this.handleSubmit}

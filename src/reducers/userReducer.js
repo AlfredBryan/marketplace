@@ -36,7 +36,7 @@ export default function users(state = initialState, action) {
         last_name: action.payload.last_name,
         email: action.payload.email,
         password: action.payload.password,
-        role: action.payload.role,
+        designation: action.payload.designation,
         loading: false,
         error: null
       };

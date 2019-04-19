@@ -9,7 +9,7 @@ import {
 } from "./types";
 import axios from "axios";
 
-const apiUrl = "https://api-marketplace.herokuapp.com/api/v1/auth";
+const apiUrl = "https://hng5-whisper.herokuapp.com/api/v1/auth";
 
 export const addUserBegin = () => ({
   type: USER_SIGNUP_BEGIN
@@ -84,23 +84,26 @@ export function userLogin({ username, password }) {
   };
 }
 
-export function signUp({ first_name, last_name, email, password, role }) {
+export function signUp({
+  first_name,
+  last_name,
+  email,
+  password,
+  designation
+}) {
   return dispatch => {
     dispatch(addUserBegin());
     axios
-      .post(`${apiUrl}/register`, {
+      .post(`${apiUrl}/signup`, {
         first_name,
         last_name,
         email,
         password,
-        role
+        designation
       })
       .then(response => {
         localStorage.setItem("token", response.data.data.token);
         dispatch(addUserSuccess(response.data));
-        if (response.status === 200) {
-          this.props.history.replace("/");
-        }
       })
       .catch(error => {
         dispatch(addUserFailure(error));

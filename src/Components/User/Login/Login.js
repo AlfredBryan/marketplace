@@ -25,6 +25,7 @@ class Login extends Component {
     let { email, password } = this.state;
     e.preventDefault();
     this.props.dispatch(userLogin({ email, password }));
+    this.props.history.replace("/");
   };
 
   render() {
